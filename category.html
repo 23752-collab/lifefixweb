@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#43A047">
+
+<meta charset="UTF-8">
+<title>เลือกหมวดปัญหา</title>
+<style>
+body{font-family:tahoma;background:#f1f8e9;text-align:center;}
+.card{background:white;display:inline-block;width:180px;margin:20px;padding:20px;border-radius:15px;font-size:20px;}
+.top-bar{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ background:#e3f2fd;
+ padding:12px 20px;
+ border-radius:0 0 20px 20px;
+}
+.app-title{font-size:20px;font-weight:bold;color:#1976D2;}
+.icon-btn{
+ background:white;border:none;border-radius:50px;
+ padding:8px 16px;box-shadow:0 4px 10px rgba(0,0,0,.15);
+ cursor:pointer;margin-left:5px;
+}
+.icon-btn:hover{background:#bbdefb;}
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+ <div class="app-title">LifeFix</div>
+ <div>
+  <button class="icon-btn" onclick="openHistory()">📜 ประวัติ</button>
+  <button class="icon-btn" onclick="location.href='logout.html'">🚪 ออกจากระบบ</button>
+ </div>
+</div>
+
+<h2>เลือกหมวดปัญหาที่คุณพบ</h2>
+
+<div class="card" onclick="goSolve('การเงิน')">💰 การเงิน</div>
+<div class="card" onclick="goSolve('การเรียน')">📚 การเรียน</div>
+<div class="card" onclick="goSolve('อาหาร')">🍱 อาหาร</div>
+<div class="card" onclick="goSolve('อื่นๆ')">🧩 อื่นๆ</div>
+
+<script>
+function openHistory(){
+ let u = localStorage.getItem("currentUser");
+ let h = JSON.parse(localStorage.getItem("history_"+u) || "[]");
+ if(h.length==0){ alert("ยังไม่มีประวัติ"); return; }
+
+ let t="📜 ประวัติของคุณ\n\n";
+ h.forEach(x=>t+="• "+x+"\n");
+ alert(t);
+}
+
+
+
+function goSolve(type){
+ localStorage.setItem("cat", type);
+ location.href="problems.html";
+}
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+</body>
+</html>
