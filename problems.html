@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+  <div class="page">
+  <style>
+.page{
+ opacity:0;
+ transition:opacity .5s ease;
+}
+
+.page.show{
+ opacity:1;
+}
+</style>
+
     <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#43A047">
 
@@ -174,6 +186,17 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
 }
 </script>
+<script>
+window.onload = ()=>{
+ document.querySelector(".page").classList.add("show");
+};
 
+function go(url){
+ const page=document.querySelector(".page");
+ page.classList.remove("show");
+ setTimeout(()=>location.href=url,400);
+}
+</script>
+</div>
 </body>
 </html>
