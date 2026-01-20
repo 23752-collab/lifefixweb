@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+    <div class="page">
+    <style>
+.page{
+ opacity:0;
+ transition:opacity .5s ease;
+}
+
+.page.show{
+ opacity:1;
+}
+</style>
+
 <meta charset="UTF-8">
 <title>ประวัติการดู</title>
 <style>
@@ -38,6 +50,17 @@ if(h.length==0){
  });
 }
 </script>
+<script>
+window.onload = ()=>{
+ document.querySelector(".page").classList.add("show");
+};
 
+function go(url){
+ const page=document.querySelector(".page");
+ page.classList.remove("show");
+ setTimeout(()=>location.href=url,400);
+}
+</script>
+</div>
 </body>
 </html>
