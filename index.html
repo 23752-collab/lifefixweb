@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+  <div class="page">
+  <style>
+.page{
+ opacity:0;
+ transition:opacity .5s ease;
+}
+
+.page.show{
+ opacity:1;
+}
+</style>
+
 <meta charset="UTF-8">
 <title>LifeFix</title>
 <link rel="stylesheet" href="style.css">
@@ -15,10 +27,17 @@
     <button style="padding:15px 40px;font-size:20px;">เริ่มใช้งาน</button>
   </a>
 </div>
+<script>
+window.onload = ()=>{
+ document.querySelector(".page").classList.add("show");
+};
 
+function go(url){
+ const page=document.querySelector(".page");
+ page.classList.remove("show");
+ setTimeout(()=>location.href=url,400);
+}
+</script>
+</div>
 </body>
 </html>
-
-
-
-
